@@ -20,7 +20,7 @@ export const registerUser = async (req, res) => {
       process.env.JWTKEY,
       { expiresIn: "1h" }
     );
-    res.status(200).json({ user, token });
+    res.status(200).json({ user, token, expiresIn: 3600000 });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -43,7 +43,7 @@ export const loginUser = async (req, res) => {
           process.env.JWTKEY,
           { expiresIn: "1h" }
         );
-        res.status(200).json({ user, token });
+        res.status(200).json({ user, token, expiresIn: 3600000 });
       }
     } else {
       res.status(404).json("User not found");
